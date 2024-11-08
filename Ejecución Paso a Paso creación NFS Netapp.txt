@@ -1,0 +1,194 @@
+mkdir -p /mnt/nfs/smax-generic-qa (10.246.4.68)
+mkdir -p /mnt/nfs/smax-volume-qa (10.246.4.69)
+mount -t nfs -o nfsvers=4 10.246.4.68:/smax-generic-qa /mnt/nfs/smax-generic-qa
+sed -i '$a\'"10.246.4.68:/smax-generic-qa /mnt/nfs/smax-generic-qa nfs nfsvers=4 0 0" /etc/fstab
+
+mount -t nfs -o nfsvers=4 10.246.4.69:/smax-volume-qa /mnt/nfs/smax-generic-qa
+sed -i '$a\'"10.246.4.69:/smax-volume-qa /mnt/nfs/smax-volume-qa nfs nfsvers=4 0 0" /etc/fstab
+
+cd /mnt/nfs/smax-generic-qa
+mkdir -P /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/logging-volume
+mkdir -P /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/config-volume
+mkdir -P /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/data-volume
+
+chown -R 1999:1999 /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/logging-volume
+chmod g+w /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/logging-volume
+chmod g+s /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/logging-volume
+chmod u+w /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/logging-volume
+chmod u+s /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/logging-volume
+
+chown -R 1999:1999 /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/config-volume
+chmod g+w /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/config-volume
+chmod g+s /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/config-volume
+chmod u+w /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/config-volume
+chmod u+s /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/config-volume
+
+chown -R 1999:1999 /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/data-volume
+chmod g+w /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/data-volume
+chmod g+s /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/data-volume
+chmod u+w /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/data-volume
+chmod u+s /mnt/nfs/smax-generic-qa/var/vols/itom/itsma/data-volume
+
+
+cd /mnt/nfs/smax-volume-qa
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-1
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-1
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-1
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-2
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-3
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-4
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-5
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-1
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-2
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-3
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-4
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-5
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-1
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-0
+mkdir -P /mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawarc-con-a-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-2
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-2
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-2
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-2
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-2
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-3
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-3
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-3
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-3
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-3
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-4
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-4
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-4
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-4
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-4
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-5
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-5
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-5
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-5
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-5
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-2
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-2
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-2
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-2
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-2
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-3
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-3
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-3
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-3
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-3
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-4
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-4
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-4
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-4
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-4
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-5
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-5
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-5
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-5
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-saw-con-a-5
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-1
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-0
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-0
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-0
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-0
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-0
+
+chown -R 1999:1999 mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-1
+chmod g+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-1
+chmod g+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-1
+chmod u+w mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-1
+chmod u+s mnt/nfs/smax-volume-qa/var/vols/itom/itsma/itsma-smarta-sawmeta-con-a-1
