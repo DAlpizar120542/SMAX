@@ -1,0 +1,368 @@
+{
+  "pv": [
+    {
+      "name": "logging-volume",
+      "platform": {
+        "azureFile": "true"
+      },
+      "pathKeyName": "NFS_Root_Path",
+      "accessModes": "ReadWriteMany",
+      "storageClassName": "itom-standard",
+      "storage": {
+        "large": "500Gi",
+        "medium": "500Gi",
+        "small": "500Gi"
+      }
+    },
+    {
+      "name": "config-volume",
+      "platform": {
+        "azureFile": "true"
+      },
+      "pathKeyName": "NFS_Root_Path",
+      "accessModes": "ReadWriteMany",
+      "storageClassName": "itom-standard",
+      "storage": {
+        "large": "100Gi",
+        "medium": "100Gi",
+        "small": "100Gi"
+      }
+    },
+    {
+      "name": "data-volume",
+      "platform": {
+        "azureFile": "true"
+      },
+      "pathKeyName": "NFS_Root_Path",
+      "accessModes": "ReadWriteMany",
+      "storageClassName": "itom-standard",
+      "storage": {
+        "large": "200Gi",
+        "medium": "200Gi",
+        "small": "200Gi"
+      }
+    },
+    {
+      "name": "rabbitmq-infra-rabbitmq-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "12Gi",
+        "medium": "6Gi",
+        "small": "2Gi"
+      }
+    },
+    {
+      "name": "rabbitmq-infra-rabbitmq-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "12Gi",
+        "medium": "6Gi",
+        "small": "2Gi"
+      }
+    },
+    {
+      "name": "rabbitmq-infra-rabbitmq-2",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "12Gi",
+        "medium": "6Gi",
+        "small": "2Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawarc-con-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "100Gi",
+        "medium": "50Gi",
+        "small": "20Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawarc-con-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "100Gi",
+        "medium": "50Gi",
+        "small": "20Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawarc-con-a-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "100Gi",
+        "medium": "50Gi",
+        "small": "20Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawarc-con-a-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "100Gi",
+        "medium": "50Gi",
+        "small": "20Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-2",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-3",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-4",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-5",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-a-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-a-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-a-2",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-a-3",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-a-4",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-saw-con-a-5",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawmeta-con-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawmeta-con-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawmeta-con-a-0",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    },
+    {
+      "name": "itsma-smarta-sawmeta-con-a-1",
+      "platform": {
+        "azureFile": "false"
+      },
+      "pathKeyName": "NFS_Root_Path_For_SmartA",
+      "accessModes": "ReadWriteOnce",
+      "storageClassName": "itom-fast",
+      "storage": {
+        "large": "60Gi",
+        "medium": "30Gi",
+        "small": "15Gi"
+      }
+    }
+  ]
+}
