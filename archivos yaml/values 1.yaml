@@ -1,0 +1,244 @@
+# Define variables to be passed into helm templates.
+# You must accept the Open Text EULA to deploy ESM.
+acceptEula: true
+
+global:
+  # [REQUIRED] Externally accessible hostname/FQDN (Load balancer OR Master Node)
+  externalAccessHost: serviceportalqa.infonavit.org.mx
+
+  # [REQUIRED] Externally accessible port (Load balancer OR Master Node). External Access Port along with External Access Host is used to access ESM.
+  externalAccessPort: 443
+
+  # Please refer to the document for instructions on calculating and selecting the appropriate deployment size for various capabilities.
+  # Supported values: small/medium/large/xlarge.
+  size: small
+
+  # All timezones are defined by IANA.
+  # Please refer to https://nodatime.org/TimeZones for the supported values.
+  timezone: "UTC"
+
+
+  docker:
+    # The values below are default and already filled in to use internal docker repository that comes with OMT.
+    # You only need to change the values when using external docker registry.
+    registry: acrsmaxqa.azurecr.io
+    orgName: hpeswitom
+    imagePullPolicy: IfNotPresent
+    imagePullSecret: registrypullsecret
+
+  # Database configuration
+  database:
+    # [DO NOT CHANGE] ESM only supports connections to external Postgres instance. Always set it to "false".
+    internal: false
+    # [DO NOT CHANGE] For now, ESM only supports PostgreSQL database servers. Always set the type of database engine to "postgresql".
+    type: postgresql
+    # [DO NOT CHANGE] true means containers will create database themselves.
+    createDb: true
+    # hostname/ip of the database instance
+    host: 991402smaxbq01.postgres.database.azure.com
+    # port of the database
+    port: 5432
+    # tlsEnabled=true requires certificates for Postgres.
+    # If `tlsEnabled` is set to true, please provide the certificate under the `.database.caCertificates` field.
+    tlsEnabled: false
+    # Postgres SSL mode accepts optional values, which can be either "verify-ca" or "verify-full" (default). Note that this parameter is ignored when tlsEnabled is set to false.
+    tlsMode: verify-full
+    # database admin
+    admin: adminsmax
+
+  # You only need to fill in the Vertica configuration when you are deploying FinOps.
+  #vertica:
+    # FQDN of Vertica Server. In case of Vertica cluster with 3 nodes, enter comma separated list of FQDN of all the 3 nodes.
+    #host:
+    #port: 5433
+    # vertica database name
+    #dbName: cgro
+    #rwuser: dbadmin
+    # tlsEnabled=true requires certificates for vertica
+    # If `tlsEnabled` is set to true, please provide the certificate under the `.vertica.caCertificates` field.
+    #tlsEnabled: true
+
+  # The user/group IDs (UID/GID) for runtime deployment, and ownership of persistent storage.
+  # Use the same user/group IDs (UID/GID) to set up NFS storage.
+  # The user/group IDs (UID/GID) can be set to any number to comply with the security policy.
+  securityContext:
+    user: 1999
+    fsGroup: 1999
+
+  # Indicates if the application should run in fips mode
+  enableFIPS: false
+
+  cluster:
+    # Supported values: cdf/aws/azure/gcp/generic/openshift. cdf is for OMT embedded Kubernetes.
+    # If you are using another CNCF-certified Kubernetes provider, please set it to 'generic'.
+    k8sProvider: "cdf"
+
+  tls:
+    # The server certificate for the Ingress controller, encoded with base64. If empty, a self-signed certificate with 'cn=global.externalAccessHost' will be generated.
+    cert: MIIDOzCCAiOgAwIBAgIUX2JZhCjMbdrgRK8HhzePuqJ9ZP4wDQYJKoZIhvcNAQELBQAwJTEjMCEGA1UEAxMaTUYgUkUgQ0Egb24gVmF1bHQgNzMwNzQ3ZjEwHhcNMjQxMTIwMDM0NDEzWhcNMzQxMTE4MDM0NDQzWjAlMSMwIQYDVQQDExpNRiBSRSBDQSBvbiBWYXVsdCA3MzA3NDdmMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMZ1udegEX8Xg1BvPv1bD+h/v2lHTLAzPg2MCqg2cGxMCR0aLYmnhqo9lzX4Qiozhuvye9bRgPo/g6e14SddjhzH6hnhjuVdgPY82BNgCXt1tp8sLBuhfp0DNhwN3FGh7lzJSX5a2AFrM+z3mKG2jOM6tKv8BgoDt+YgLJGWth0FH4pEPZw1YV3o4iBZ2hpVxgYGo02n9CTZT6s4rL8OOl55wauvcW71j99YVbIvebZc35Gm99CZ0EA6H/kDeGmoATHjRzt6IjenIBpYUE5sU4NLPewCeyOWh1Ntb7miEy4UZCTRznwaOnj4YR7RGG5ney0LsB6+0jydgjOujIXlBU0CAwEAAaNjMGEwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFB+dQSsAitDvTcXc35KviZ4J14IwMB8GA1UdIwQYMBaAFB+dQSsAitDvTcXc35KviZ4J14IwMA0GCSqGSIb3DQEBCwUAA4IBAQA+SMM8DoHYvbXCy/YNg7iENEe8biYu8WNwbyI1ReZDrxnLANcvONO+ra9dLnMCSWCsdt/1hgoYeWt5K00V+A30th1ZR1dhzc1qICOKlwuon6oNbC8xUUwjzQKc4snDPCNKKRRElTJFMUJzhAhhwiR2tnr1NpTt0k6ryQfim2UYcTVQyjpAWYscOPd0MGiySDQXn8/oF655W/Imi02q1SdXdUp5EPxA7zWgR4rI4fm9D79lB4TffKBtxqyfNG65twy2HSZUUiMIT4poo9JKz3p6bSan5bpmRO/WyDF1TZijvoo97oKV1JgxvCGVwfox/f4QGUMSqt6SfHy9DwHeNrsX
+    # The server certificate key for the Ingress controller, encoded with base64. If empty, a self-signed certificate key will be generated.
+    key: MIIEpQIBAAKCAQEAo05463Hd0U6Agw8TxKnhv2gYIp5E5aRWz66kPUyXi0FRdwc0p3Ik8tML+e/4FI3zYJ/7LRUmtXwdo5iGZ3j2dRI08j/PqlduyAseblwRvTE6203QeU+/7blijnTaFQTSuatuaAfWib01cc02lUgjUCiY51vfoM2pXXBPg7+ijTBd01fTAGkHpH65rKL7cvIDSq+js0VVWmTudhwKQ5v2ttJebf7YKFBunupA4oahmysJFNN9PevoXggtLSnx/0nvPbVRFlv03F/DAgmJbKDdFAAhhmVqc6Snfc3ZK3K1hIHA++5zneBsQ7jE80ybtahvPp+2cizSMidt9xznCPFQPwIDAQABAoIBAQCNpIOW20VkxK0Mf6hKvHpUNSox5Iqnj7nIGpbToDoVC4toLPTLg2JuxwStPSk0UsbUeQ431Q+k+8kNWz7AQpephSgtMZGiEoHAunwjhnHQYgHFsyFuBvDWdSP5oXqCHpPTfNCfJKU9BMJ1OWPtaQtP/FZa3UICzD7pD3+4KyAHSpf0yRjfNM6cYyZGs5LH3hIO49AuMJLKRmJxWhCPDMTaAYTsPHTJ9FdeDQi7QYnt0Mwh98kTAPS5oeI4x/carKqkyiP2QPsYiNk5/E9243Ci1iWe6lHepcNm0DOg8eS7OtqBdta9oTjtAbFgcuVgZ4c7CD9hGo/dPYFQjbU671hZAoGBANescjYoyCjYJrQtKTIzo+nAsNjoUeEl4MHwlI6sQ2FTM08Kut/Xdo4Jjg2K+PTl4OJW5yOJXC97IfcaqA/8M1aKq0yXpz3gVwV9mlyVG9K1lpGf+TL+G5P2w0B4AEZlW0v/4+qNeaxjrwVZ9WQ/0YhBlk/R5nrX5gaEgun/HzNlAoGBAMHXZOC7ssTAub0CFhUgg7BWv7//X9fLbqglwv6C45j+OZEKGKwElyncO2WmmZclzh3009B+fHT24jZwR/nFNZpBbU0fjaz773ChzfcxlpkJw1cITccNl9//tFq8HTjoCWDSAdesQRZvFrQi+HFnFyqRQhTtuDF1uwESIQyBZOTTAoGBANFNcHVw9Hb29fCrVyx6AxvJvZZzN2sJqGpuQK2JLcbYyJVvs1WiM1K6oRoxgVOhd7IQZjYNiuIlXBwDyY/h0CyvXHhzQIGDItCYSWKJ7jt5sIrYti2vfzIEKw54psOqf4Rs7FHnRGpxPxwxZj0I1h6mj+ocqNEUjw5KMQZHaY8lAoGAQ98KWFIAVznwDwkC+GTJF15Yh36AbYuydDe8nebwkCo7t9gkKV72GtcdCQubbbvz/rMx0yfmpgGn1U3dNcxiZ1+PSNjKf447GWHePzZit7Uea4Phz9ennOvol3iUds9wMTF3KbALnjJJbcts2DAzgVkZHUDbJJ5HWymg3sMTs7cCgYEAwpfB+yhdwjsj9fKIl0eSGYZpucTRdWKovuQi4JryqmN4dn8mOWHuJxuduO6g1jpy0yYAs6hokuA+LCAkSTTeZcQMWBTPenJ59Fn/P8aE/1yAiX6TAEGfJEDrNSG8mu1WkrvoEKBHOxa5hM6j4oE7V4ysz9rDD5yoNY15C6sYUFQ=
+
+  nginx:
+    # Provide the NGINX annotation prefix used in the ingress resources - default: ingress.kubernetes.io
+    annotationPrefix:
+
+  expose:
+    # The service type options for the Ingress Controller are: NodePort, ClusterIP, LoadBalancer.
+    type: LoadBalancer
+    externalLoadBalancer:
+      annotations: {}
+      ip:
+
+  persistence:
+    # When pvcCreate is set to true, the composition chart is expected to create PVCs(data-volume,config-volume and logging-volume) automatically.
+    # When pvcCreate is set to false, existing PVCs are utilized.
+    pvcCreate: true
+    # Used to inject storageClasses into PVC creation.
+    # Users can change any or all of these to match the actual storage classes used in their environment.
+    # For ESM, default-rwx used for generic volumes. (e.g data-volume,config-volume and logging-volume),default-rwo used for rabbitmq and idol related volumes.
+    storageClasses:
+      default-rwx: itom-standard
+      default-rwo: itom-fast
+    # Name of the following data pvc,required to change your actual name when pvcCreate is false
+    #dataVolumeClaim: data-volume
+    #configVolumeClaim: config-volume
+    #logVolumeClaim: logging-volume
+    # Ensure that the created PV size matches the PVC size provided below.
+    # For more information on sizing/resizing PVCs, please refer to the documentation.
+    #dataVolumeSize: 200Gi
+    #configVolumeSize: 100Gi
+    #logVolumeSize: 500Gi
+
+  # node selector
+  nodeSelector: {}
+
+  # Proxy for applications to call an external app URL.
+  # Currently, only IDM utilizes it.
+  proxy:
+    httpsProxy:
+    httpProxy:
+    noProxy:
+
+  # You can set "deploy" to true for various services to enable different capabilities.
+  # - To enable FinOps, set the following parameters to true; otherwise, set them to false.
+  #   - 'global.services.cmp.deploy'
+  #   - 'global.services.cgro.deploy'
+  #   - 'global.services.dnd.deploy'
+  #   Carbon Footprint is one of the services included with FinOps, which you can enable based on your requirements.
+  #   To enable Carbon Footprint, set the following parameters to true; otherwise, set them to false.
+  #   - 'global.services.carbon.deploy'
+  #
+  # - To enable Hybrid Cloud Management, set the following parameters to true; otherwise, set them to false.
+  #   - 'global.services.cmp.deploy'
+  #   - 'global.services.dnd.deploy'
+  #
+  # - To enable Software Asset Management (SAM), set the following parameters to true; otherwise, set them to false.
+  #   - 'global.services.sam.deploy'
+  #
+  # - To enable Service Portal for Service Manager, set the following parameters to true; otherwise, set them to false.
+  #   Service Portal for Service Manager requires to integrate an external Service Manager system with SMA Service Portal. Mandatory for SMA-SM customers.
+  #   Service Portal for Service Manager requires integration with an external Service Manager system, which is mandatory for SMA-SM customers.
+  #   - 'global.services.smGateway.deploy'
+  #   - 'global.services.smChat.deploy'
+  #
+  # - To enable the foundational capabilities of Enterprise Service Management, ensure that the following parameters are always set to true.
+  #   - 'global.services.xie.deploy'
+  #   - 'global.services.xie.scheduler.deploy'
+  #   - 'global.services.xruntime.mobile-gateway.deploy'
+  #
+  # - For FedRamp, some services are not yet compatible with the FedRamp standard. To comply with FedRamp, ensure that the following parameters are always set to false.
+  #   - 'global.services.cmp.deploy'
+  #   - 'global.services.cgro.deploy'
+  #   - 'global.services.dnd.deploy'
+  #   - 'global.services.sam.deploy'
+  #   - 'global.services.smGateway.deploy'
+  #   - 'global.services.smChat.deploy'
+  #   - 'global.services.xie.scheduler.deploy'
+  #   - 'global.services.carbon.deploy'
+  #   - 'global.services.va.deploy'
+  #   - 'global.services.xruntime.mobile-gateway.deploy'
+  #
+  # - To enable Automation Center (AC), set the following parameters to true; otherwise, set them to false.
+  #   - 'global.services.ac.deploy'
+  services:
+    cmp:
+      deploy: true
+    cgro:
+      deploy: false
+    dnd:
+      deploy: false
+    sam:
+      deploy: false
+    smGateway:
+      deploy: false
+    smChat:
+      deploy: false
+    xie:
+      deploy: true
+      scheduler:
+        deploy: true
+    carbon:
+      deploy: false
+    va:
+      deploy: false
+    xruntime:
+      mobile-gateway:
+        deploy: true
+    ac:
+      deploy: false
+
+# If you want to enable Native SCAM, please create a copy of the CMS server certificate under this section.
+# If you want to enable Hybrid Cloud Management or FinOps, please create a copy of the OO server certificate under this section.
+# If you want to integrate with other external system, please create a copy of the external system certificate under this section.
+# Example:
+#    caCertificates: 
+#      cms_ca.crt: <cert-file-base64-encoded> or PEM
+#      oo_ca.crt: <cert-file-base64-encoded> or PEM
+#      audit_ca.crt: <cert-file-base64-encoded> or PEM
+caCertificates: {}
+
+# If `.global.database.tlsEnabled` is set to true, please provide the database server certificate here.
+# Example:
+#    database:
+#      caCertificates: 
+#        pg_ca.crt: <cert-file-base64-encoded> or PEM
+database:
+  caCertificates: {}
+
+# If `.global.vertica.tlsEnabled` is set to true, please provide the database server certificate here.
+# Example:
+#    vertica:
+#      caCertificates: 
+#        pg_ca.crt: <cert-file-base64-encoded> or PEM
+vertica:
+  caCertificates: {}
+
+# Secrets Password must be provided in Base64 encoded format.
+secrets:
+  # Database Admin Password for Postgres.
+  dbaPassword:U01hWC4yMDI0Jg==
+
+  # Database Password for Vertica: Only fill this field when deploying FinOps. Otherwise, leave it empty.
+  verticaDbPassword:U01hWC4yMDI0Jg==
+
+  # Suite Database Owner Password for Postgres. Set an initial password for all the services' database owner.
+  dbPassword:U01hWC4yMDI0Jg==
+
+  # Password for Suite System Administrator(suite-admin).
+  # The passwords must comply with the following complexity requirements policy.
+  # (1) Must be between 10 and 16 characters in length.
+  # (2) At least one upper case letter
+  # (3) At least one lower case letter
+  # (4) At least one special character from the following: ,:/. _?&%=+-[]()
+  # (5) At least one digit
+  boAdminPassword:U01hWC4yMDI0Jg==
+
+  # Password for Suite System Integration User (bo-integration@dummy.com).
+  # The passwords must comply with the following complexity requirements policy.
+  # (1) Must be between 10 and 16 characters in length.
+  # (2) At least one upper case letter
+  # (3) At least one lower case letter
+  # (4) At least one special character from the following: ,:/. _?&%=+-[]()
+  # (5) At least one digit
+  boIntegrationPassword:U01hWC4yMDI0Jg==
